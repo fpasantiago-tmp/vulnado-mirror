@@ -50,14 +50,14 @@ jobs:
             filename: 'out/dashboard.html'
             sections:
             - title: 'GH Security Alerts'
-            widgets:
-            - type: 'graph'
-              title: 'Alerts by status'
-              elements:
-                - title: Open
-                  value: 18
-                  color: green
-                - title: Fixed
-                  value: 16
-                  color: red
+              widgets:
+              - type: 'graph'
+                title: 'Alerts by status'
+                elements:
+                  - title: Open
+                    value: 18
+                    color: green
+                  - title: Fixed
+                    value: 16
+                    color: red
           token: ${{ secrets.GITHUB_TOKEN }}
