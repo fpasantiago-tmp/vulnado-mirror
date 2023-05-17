@@ -60,3 +60,4 @@ jobs:
                 - title: Fixed
                   value: 16
                   color: red
+          token: ${{ secrets.GITHUB_TOKEN }}
