@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.PAT_SECURITY_EVENTS_SUMMARY }}
         run: |
           gh api \
           -H "Accept: application/vnd.github+json" \
