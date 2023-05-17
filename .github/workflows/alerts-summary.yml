@@ -19,7 +19,18 @@ jobs:
           -H "X-GitHub-Api-Version: 2022-11-28" \
           "/repos/fpasantiago-tmp/vulnado-mirror/dependabot/alerts?state=open&sort=created&direction=desc" --jq 'length')
           echo "OPEN_ALERTS=$(echo $OPEN_ALERTS)" >> "$GITHUB_OUTPUT"
+      - name: "Count open security alerts"
+        id: fixed_sec_alerts
+        shell: bash
+        env:
+          GH_TOKEN: ${{ secrets.PAT_SECURITY_EVENTS_SUMMARY }}
+        run: |
+          FIXED_ALERTS=$(gh api \
+          -H "Accept: application/vnd.github+json" \
+          -H "X-GitHub-Api-Version: 2022-11-28" \
+          "/repos/fpasantiago-tmp/vulnado-mirror/dependabot/alerts?state=fixed&sort=created&direction=desc" --jq 'length')
+          echo "FIXED_ALERTS=$(echo $OPEN_ALERTS)" >> "$GITHUB_OUTPUT"
       - name: "Echo open security alerts"
         shell: bash
         run: |
-          echo "Open alerts: ${{ steps.open_sec_alerts.outputs.OPEN_ALERTS }}"
+          echo "Fixed alerts: ${{ steps.open_sec_alerts.outputs.FIXED_ALERTS }}"
