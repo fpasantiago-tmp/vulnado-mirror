@@ -1,4 +1,4 @@
-name: "Dependency Review - Check PR vulnerable dependencies"
+name: "Security Alerts - Summary"
 on:
   workflow_dispatch:
 permissions:
