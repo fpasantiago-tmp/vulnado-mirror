@@ -11,8 +11,8 @@ jobs:
       - name: Check out GitHub Pages branch
         uses: actions/checkout@v2
         with:
-          ref: 'gh-pages'
-          path: 'out'
+          ref: "gh-pages"
+          path: "out"
       - name: "Count open security alerts"
         id: open_sec_alerts
         shell: bash
@@ -40,3 +40,23 @@ jobs:
         run: |
           echo "OPEN alerts: ${{ steps.open_sec_alerts.outputs.OPEN_ALERTS }}"
           echo "Fixed alerts: ${{ steps.fixed_sec_alerts.outputs.FIXED_ALERTS }}"
+      - name: "Generate Dashboard"
+        uses: ethomson/issue-dashboard@v1
+        with:
+          config: |
+            title: 'Dashboard'
+            output:
+            format: html
+            filename: 'out/dashboard.html'
+            sections:
+            - title: 'GH Security Alerts'
+            widgets:
+            - type: 'graph'
+              title: 'Alerts by status'
+              elements:
+                - title: Open
+                  value: 18
+                  color: green
+                - title: Fixed
+                  value: 16
+                  color: red
