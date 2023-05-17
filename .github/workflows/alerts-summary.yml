@@ -1,0 +1,17 @@
+name: "Dependency Review - Check PR vulnerable dependencies"
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+  security-events: read
+jobs:
+  security_alerts_summary:
+    runs-on: ubuntu-latest
+    steps:
+      - env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh api \
+          -H "Accept: application/vnd.github+json" \
+          -H "X-GitHub-Api-Version: 2022-11-28" \
+          /repos/fpasantiago-tmp/vulnado-mirror/dependabot/alerts
