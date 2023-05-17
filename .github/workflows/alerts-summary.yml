@@ -2,9 +2,10 @@ name: "Security Alerts - Summary"
 on:
   workflow_dispatch:
 permissions:
-  contents: read
+  contents: write
   security-events: read
   pages: write
+  pull-requests: write
 jobs:
   security_alerts_summary:
     runs-on: ubuntu-latest
