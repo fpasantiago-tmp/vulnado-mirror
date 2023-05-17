@@ -14,5 +14,4 @@ jobs:
           gh api \
           -H "Accept: application/vnd.github+json" \
           -H "X-GitHub-Api-Version: 2022-11-28" \
-          -Fstate='open' -Fdirection='desc' \
           "/repos/fpasantiago-tmp/vulnado-mirror/dependabot/alerts?state=open&sort=created&direction=desc"
