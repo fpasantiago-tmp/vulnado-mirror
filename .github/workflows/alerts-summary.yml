@@ -4,6 +4,7 @@ on:
 permissions:
   contents: read
   security-events: read
+  pages: write
 jobs:
   security_alerts_summary:
     runs-on: ubuntu-latest
