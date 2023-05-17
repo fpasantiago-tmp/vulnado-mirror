@@ -8,6 +8,11 @@ jobs:
   security_alerts_summary:
     runs-on: ubuntu-latest
     steps:
+      - name: Check out GitHub Pages branch
+        uses: actions/checkout@v2
+        with:
+          ref: 'gh-pages'
+          path: 'out'
       - name: "Count open security alerts"
         id: open_sec_alerts
         shell: bash
