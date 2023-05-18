@@ -8,17 +8,18 @@ permissions:
 jobs:
   fetch-metadata:
     runs-on: ubuntu-latest
-    if: ${{ github.triggering_actor	 == 'dependabot[bot]' }}
+#    if: ${{ github.triggering_actor	 == 'dependabot[bot]' }}
     steps:
-      - name: Fetch Dependabot metadata
-        id: dependabot-metadata
-        uses: dependabot/fetch-metadata@v1
-        with:
-          alert-lookup: true
-          compat-lookup: true
-          github-token: "${{ secrets.GITHUB_TOKEN }}"
+#      - name: Fetch Dependabot metadata
+#        id: dependabot-metadata
+#        uses: dependabot/fetch-metadata@v1
+#        with:
+#          alert-lookup: true
+#          compat-lookup: true
+#          github-token: "${{ secrets.GITHUB_TOKEN }}"
       - name: Dump Dependabot metadata
         env:
-          META_DATA: ${{ toJson(steps.metadata.outputs) }}
+#          META_DATA: ${{ toJson(steps.metadata.outputs) }}
+          META_DATA: ${{ toJson(github.event.pull) }}
         run: |
           echo "$META_DATA"
