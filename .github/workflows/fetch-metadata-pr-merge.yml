@@ -8,17 +8,17 @@ permissions:
 jobs:
   fetch-metadata-pr-merge:
     runs-on: ubuntu-latest
-    #    if: ${{ github.triggering_actor	 == 'dependabot[bot]' }}
+    if: ${{ github.event.commits[0].author.name	 == 'dependabot[bot]' }}
     steps:
       #      - name: "Checkout Repository"
       #        uses: actions/checkout@v3
-      - name: Fetch Dependabot metadata
-        id: dependabot-metadata
-        uses: dependabot/fetch-metadata@v1
-        with:
-          alert-lookup: true
-          compat-lookup: true
-          github-token: "${{ secrets.GITHUB_TOKEN }}"
+      #      - name: Fetch Dependabot metadata
+      #        id: dependabot-metadata
+      #        uses: dependabot/fetch-metadata@v1
+      #        with:
+      #          alert-lookup: true
+      #          compat-lookup: true
+      #          github-token: "${{ secrets.GITHUB_TOKEN }}"
       - name: Dump Dependabot metadata
         env:
           META_DATA: ${{ toJson(github.event) }}
