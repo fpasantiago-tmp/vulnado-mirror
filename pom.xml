@@ -91,6 +91,11 @@
 			<artifactId>resteasy-client</artifactId>
 			<version>4.6.0.Final</version>
 		</dependency>		
+		<dependency>
+			<groupId>org.apache.systemds</groupId>
+			<artifactId>systemds</artifactId>
+			<version>2.1.0</version>
+		</dependency>		
 	</dependencies>
 
 	<build>
