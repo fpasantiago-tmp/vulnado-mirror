@@ -19,8 +19,8 @@ jobs:
       #          alert-lookup: true
       #          compat-lookup: true
       #          github-token: "${{ secrets.GITHUB_TOKEN }}"
-      - name: Dump Dependabot metadata
+      - name: Dump push event
         env:
-          META_DATA: ${{ toJson(github.event) }}
+          EVENT_DATA: ${{ toJson(github.event) }}
         run: |
-          echo "${META_DATA}"
+          echo "${EVENT_DATA}"
