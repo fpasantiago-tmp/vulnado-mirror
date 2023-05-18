@@ -6,7 +6,7 @@ on:
 permissions:
   contents: read
 jobs:
-  fetch-metadata:
+  fetch-metadata-pr-merge:
     runs-on: ubuntu-latest
 #    if: ${{ github.triggering_actor	 == 'dependabot[bot]' }}
     steps:
