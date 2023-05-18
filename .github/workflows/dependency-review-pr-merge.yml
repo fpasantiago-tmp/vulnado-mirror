@@ -11,6 +11,11 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{ github.event.pull_request.merged == true }}
     steps:
+      - name: Dump PR merged event
+        env:
+          EVENT_DATA: ${{ toJson(github.event) }}
+        run: |
+          echo "${EVENT_DATA}"
       - name: "Checkout Repository"
         uses: actions/checkout@v3
       - name: Fetch PR metadata
