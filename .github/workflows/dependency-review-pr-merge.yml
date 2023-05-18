@@ -1,0 +1,21 @@
+name: "Dependency Review - Check PR merge for vulnerable dependencies"
+on:
+  pull_request:
+    branches:
+      - main
+    types: [closed]
+permissions:
+  contents: read
+jobs:
+  dependency-review-pr-merge:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.merged == 'true' }}
+    steps:
+      - name: "Checkout Repository"
+        uses: actions/checkout@v3
+      - name: Dependency Review
+        uses: actions/dependency-review-action@v3
+        with:
+          fail-on-severity: moderate
+          fail-on-scopes: runtime
+          license-check: false
