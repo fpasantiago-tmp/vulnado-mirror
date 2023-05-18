@@ -8,18 +8,18 @@ permissions:
 jobs:
   fetch-metadata-pr-merge:
     runs-on: ubuntu-latest
-#    if: ${{ github.triggering_actor	 == 'dependabot[bot]' }}
+    #    if: ${{ github.triggering_actor	 == 'dependabot[bot]' }}
     steps:
-#      - name: Fetch Dependabot metadata
-#        id: dependabot-metadata
-#        uses: dependabot/fetch-metadata@v1
-#        with:
-#          alert-lookup: true
-#          compat-lookup: true
-#          github-token: "${{ secrets.GITHUB_TOKEN }}"
+      #      - name: Fetch Dependabot metadata
+      #        id: dependabot-metadata
+      #        uses: dependabot/fetch-metadata@v1
+      #        with:
+      #          alert-lookup: true
+      #          compat-lookup: true
+      #          github-token: "${{ secrets.GITHUB_TOKEN }}"
       - name: Dump Dependabot metadata
         env:
-#          META_DATA: ${{ toJson(steps.metadata.outputs) }}
-          META_DATA: ${{ github.event.pull }}
+          #          META_DATA: ${{ toJson(steps.metadata.outputs) }}
+          META_DATA: ${{ github.event.push }}
         run: |
-          echo "This PR is opened by ${{ github.event.pull_request.user.login }} ."
+          echo "This PR is opened by ${{ github.event.push }} ."
