@@ -23,4 +23,4 @@ jobs:
         env:
           META_DATA: ${{ github.event.push }}
         run: |
-          echo "${METADATA}"
+          echo "${META_DATA}"
