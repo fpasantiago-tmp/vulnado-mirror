@@ -3,7 +3,7 @@ on:
   pull_request:
     branches:
       - main
-    types: [opened, reopened, edited, ready_for_review, review_requested]
+    types: [opened, reopened, edited, ready_for_review, review_requested, synchronized]
 permissions:
   contents: read
 jobs:
