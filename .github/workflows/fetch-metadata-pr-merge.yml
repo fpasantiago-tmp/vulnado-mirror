@@ -1,4 +1,4 @@
-name: "Fetch metadatada"
+name: "Fetch metadatada - PR merge"
 on:
   push:
     branches:
