@@ -22,4 +22,4 @@ jobs:
 #          META_DATA: ${{ toJson(steps.metadata.outputs) }}
           META_DATA: ${{ github.event.pull }}
         run: |
-          echo "$META_DATA"
+          echo "This PR is opened by ${{ github.event.pull_request.user.login }} ."
