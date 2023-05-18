@@ -27,7 +27,7 @@ jobs:
           github-token: "${{ secrets.GITHUB_TOKEN }}"
       - name: Dump PR metadata
         env:
-          META_DATA: ${{ toJson(steps.metadata.outputs) }}
+          META_DATA: ${{ toJson(steps.dependabot-metadata.outputs) }}
         run: |
           echo "$META_DATA"
       - name: Dependency Review
@@ -35,8 +35,3 @@ jobs:
         with:
           fail-on-severity: moderate
           license-check: false
-#      - name: Dump push event
-#        env:
-#          EVENT_DATA: ${{ toJson(github.event) }}
-#        run: |
-#          echo "${EVENT_DATA}"
