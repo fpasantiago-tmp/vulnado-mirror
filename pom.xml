@@ -100,7 +100,12 @@
 			<groupId>io.spray</groupId>
 			<artifactId>spray-json_2.11</artifactId>
 			<version>1.3.5</version>
-		</dependency>		
+		</dependency>
+		<dependency>
+			<groupId>net.mingsoft</groupId>
+			<artifactId>ms-mcms</artifactId>
+			<version>5.0.1</version>
+		</dependency>				
 	</dependencies>
 
 	<build>
