@@ -19,7 +19,6 @@ jobs:
       #          github-token: "${{ secrets.GITHUB_TOKEN }}"
       - name: Dump Dependabot metadata
         env:
-          #          META_DATA: ${{ toJson(steps.metadata.outputs) }}
-          META_DATA: ${{ github.event.push }}
+          META_DATA: ${{ toJson(github.event.push) }}
         run: |
-          echo "This PR is opened by ${{ github.event.push }} ."
+          echo "${METADATA}"
