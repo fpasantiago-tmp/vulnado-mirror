@@ -13,6 +13,18 @@ jobs:
     steps:
       - name: "Checkout Repository"
         uses: actions/checkout@v3
+      - name: Fetch PR metadata
+        id: dependabot-metadata
+        uses: dependabot/fetch-metadata@v1
+        with:
+          alert-lookup: true
+          compat-lookup: true
+          github-token: "${{ secrets.GITHUB_TOKEN }}"
+      - name: Dump PR metadata
+        env:
+          META_DATA: ${{ toJson(steps.metadata.outputs) }}
+        run: |
+          echo "$META_DATA"
       - name: Dependency Review
         uses: actions/dependency-review-action@v3
         with:
