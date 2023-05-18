@@ -9,17 +9,17 @@ permissions:
 jobs:
   dependency-review-pr-merge:
     runs-on: ubuntu-latest
-    #    if: ${{ github.event.merged == 'true' }}
+    if: ${{ github.event.pull_request.merged == 'true' }}
     steps:
-      #      - name: "Checkout Repository"
-      #        uses: actions/checkout@v3
-      #      - name: Dependency Review
-      #        uses: actions/dependency-review-action@v3
-      #        with:
-      #          fail-on-severity: moderate
-      #          license-check: false
-      - name: Dump push event
-        env:
-          EVENT_DATA: ${{ toJson(github.event) }}
-        run: |
-          echo "${EVENT_DATA}"
+      - name: "Checkout Repository"
+        uses: actions/checkout@v3
+      - name: Dependency Review
+        uses: actions/dependency-review-action@v3
+        with:
+          fail-on-severity: moderate
+          license-check: false
+#      - name: Dump push event
+#        env:
+#          EVENT_DATA: ${{ toJson(github.event) }}
+#        run: |
+#          echo "${EVENT_DATA}"
