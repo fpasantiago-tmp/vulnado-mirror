@@ -20,6 +20,6 @@ jobs:
       - name: Dump Dependabot metadata
         env:
 #          META_DATA: ${{ toJson(steps.metadata.outputs) }}
-          META_DATA: ${{ toJson(github.event.pull) }}
+          META_DATA: ${{ github.event.pull }}
         run: |
           echo "$META_DATA"
