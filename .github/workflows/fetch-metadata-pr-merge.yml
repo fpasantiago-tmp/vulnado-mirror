@@ -19,6 +19,6 @@ jobs:
       #          github-token: "${{ secrets.GITHUB_TOKEN }}"
       - name: Dump Dependabot metadata
         env:
-          META_DATA: ${{ toJson(github.event.push) }}
+          META_DATA: ${{ github.event.push }}
         run: |
           echo "${METADATA}"
