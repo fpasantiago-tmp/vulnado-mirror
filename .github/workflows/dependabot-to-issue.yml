@@ -1,10 +1,9 @@
 name: Process new/reopened Dependabot PR
 on:
-  workflow_dispatch:
   pull_request:
     branches:
-      - develop
-    types: [opened, reopened]
+      - main
+    types: [opened, reopened, synchronize]
 permissions:
   contents: read # required to read GH Action metadata file
   pull-requests: write # required to create/modify PRs locally
