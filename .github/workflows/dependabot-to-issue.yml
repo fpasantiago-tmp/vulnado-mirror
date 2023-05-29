@@ -22,7 +22,10 @@ jobs:
         id: define_ecosystem_package
         shell: bash
         run: |
-          echo "ref=$(echo ${{ github.event.pull_request.head.ref }}" >> $GITHUB_OUTPUT
+          ecosystem=$(echo ${{ github.event.pull_request.head.ref }} | sed 's/^dependabot\/\(.*\)\/\(.*\)/\1/' )
+          package_version=$(echo ${{ github.event.pull_request.head.ref }} | sed 's/^dependabot\/\(.*\)\/\(.*\)/\2/' )
+          echo "ecosystem=$(echo ${{ github.event.pull_request.head.ref }} | sed 's/^dependabot\/\(.*\)\/\(.*\)/\2/' )" >> $GITHUB_OUTPUT          
+          echo "package_version=$(echo ${{ github.event.pull_request.head.ref }} | sed 's/^dependabot\/\(.*\)\/\(.*\)/\2/' )" >> $GITHUB_OUTPUT
       - name: Prepare PR URL
         id: prepare_pr_url
         shell: bash
