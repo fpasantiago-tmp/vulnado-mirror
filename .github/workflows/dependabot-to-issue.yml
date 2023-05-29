@@ -24,7 +24,7 @@ jobs:
         id: prepare_pr_url
         shell: bash
         run: |
-          echo "pr_url=$(echo https://github.com/${{ github.repository }}/pull/${{github.event.pull_request.number}}" >> $GITHUB_OUTPUT
+          echo "pr_url=$(echo https://github.com/${{ github.repository }}/pull/${{github.event.pull_request.number}})" >> $GITHUB_OUTPUT
       - name: Prepare environment
         shell: bash
         run: |
