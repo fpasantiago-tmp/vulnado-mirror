@@ -8,7 +8,7 @@ permissions:
   contents: read # required to read GH Action metadata file
   pull-requests: write # required to create/modify PRs locally
   repository-projects: read
-  issues: write  
+  issues: write
 env:
   GH_TOKEN: ${{ github.token }}
 jobs:
@@ -17,12 +17,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: "Checkout Repository"
-        uses: actions/checkout@v3    
+        uses: actions/checkout@v3
       - name: Define prefix as repository name
-        id: define_repo_prefix
+        id: define_ecosystem_package
         shell: bash
         run: |
-          echo "repo_prefix=[$(echo ${{ github.repository }} | sed 's#.*/##')]" >> $GITHUB_OUTPUT
+          echo "ref=$(echo ${{ github.event.pull_request.head.ref }}" >> $GITHUB_OUTPUT
       - name: Prepare PR URL
         id: prepare_pr_url
         shell: bash
