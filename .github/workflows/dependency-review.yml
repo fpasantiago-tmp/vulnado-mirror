@@ -20,6 +20,7 @@ jobs:
           fail-on-scopes: runtime
           license-check: false
       - name: Print dependency review output
+        if: always()
         id: print_dependency_review_output
         shell: bash
         run: echo "${{ toJson(steps.dependency_review_step.outputs) }}"
