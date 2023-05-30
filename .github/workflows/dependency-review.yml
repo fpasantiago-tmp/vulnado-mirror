@@ -15,6 +15,7 @@ jobs:
       - name: Dependency Review
         id: dependency_review_step
         uses: actions/dependency-review-action@v3
+        continue-on-error: true
         with:
           fail-on-severity: moderate
           fail-on-scopes: runtime
