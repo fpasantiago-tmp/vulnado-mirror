@@ -6,6 +6,7 @@ on:
     types: [closed]
 permissions:
   contents: read
+  pull-requests: write
 jobs:
   dependency-review-pr-merge:
     runs-on: ubuntu-latest
