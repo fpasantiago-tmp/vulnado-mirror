@@ -24,7 +24,7 @@ jobs:
         with:
           fail-on-severity: moderate
           license-check: false
-      - name: Create GH Issue
+      - name: Print dependency review output
         id: print_dependency_review_output
         shell: bash
-        run: echo "${{ steps.dependency_review_step.outputs }}"
+        run: echo "${{ toJson(steps.dependency_review_step.outputs) }}"
