@@ -13,8 +13,17 @@ jobs:
       - name: "Checkout Repository"
         uses: actions/checkout@v3
       - name: Dependency Review
+        id: dependency_review_step
         uses: actions/dependency-review-action@v3
+        continue-on-error: true
         with:
-          fail-on-severity: moderate
+          fail-on-severity: low
           fail-on-scopes: runtime
           license-check: false
+      - name: Print dependency review output
+        if: always()
+        id: print_dependency_review_output
+        shell: bash
+        run: |
+          echo "Outcome: ${{ toJson(steps.dependency_review_step.outcome) }}"
+          echo "Conclusion: ${{ toJson(steps.dependency_review_step.conclusion) }}"

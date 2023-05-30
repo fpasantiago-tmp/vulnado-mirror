@@ -3,14 +3,14 @@
 # Please see the documentation for all configuration options:
 # https://docs.github.com/github/administering-a-repository/configuration-options-for-dependency-updates
 
-#version: 2
-#updates: # See documentation for possible values
-#  - package-ecosystem: 'maven'
-#    directory: '/' # Location of package manifests
-#    schedule:
-#      interval: 'daily'
-#    open-pull-requests-limit: 5
-#    labels: 
-#    commit-message:
-#      prefix: "build(runtime-dep): "
-#      prefix-development: "build(dev-dep): "
+version: 2
+updates: # See documentation for possible values
+  - package-ecosystem: 'maven'
+    directory: '/' # Location of package manifests
+    schedule:
+      interval: 'daily'
+    open-pull-requests-limit: 5
+    labels: 
+    commit-message:
+      prefix: "build(runtime-dep): "
+      prefix-development: "build(dev-dep): "

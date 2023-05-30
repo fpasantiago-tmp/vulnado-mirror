@@ -6,20 +6,25 @@ on:
     types: [closed]
 permissions:
   contents: read
+  pull-requests: write
 jobs:
   dependency-review-pr-merge:
     runs-on: ubuntu-latest
     if: ${{ github.event.pull_request.merged == true }}
     steps:
-      - name: Dump PR merged event
-        env:
-          EVENT_DATA: ${{ toJson(github.event) }}
-        run: |
-          echo "${EVENT_DATA}"
       - name: "Checkout Repository"
         uses: actions/checkout@v3
       - name: Dependency Review
         uses: actions/dependency-review-action@v3
+        id: dependency_review_step
         with:
-          fail-on-severity: moderate
+          fail-on-severity: low
           license-check: false
+          comment-summary-in-pr: true
+      - name: Print dependency review output
+        if: always()
+        id: print_dependency_review_output
+        shell: bash
+        run: |
+          echo "Outcome: ${{ toJson(steps.dependency_review_step.outcome) }}"
+          echo "Conclusion: ${{ toJson(steps.dependency_review_step.conclusion) }}"

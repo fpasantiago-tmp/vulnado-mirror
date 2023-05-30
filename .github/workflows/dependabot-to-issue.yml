@@ -1,0 +1,54 @@
+name: Process new/reopened Dependabot PR
+on:
+  pull_request:
+    branches:
+      - main
+    types: [opened, reopened, synchronize]
+permissions:
+  contents: read # required to read GH Action metadata file
+  pull-requests: write # required to create/modify PRs locally
+  repository-projects: read
+  issues: write
+env:
+  GH_TOKEN: ${{ github.token }}
+jobs:
+  process_dependabot_pr:
+    if: ${{ github.event.pull_request.user.login  == 'dependabot[bot]' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Checkout Repository"
+        uses: actions/checkout@v3
+      - name: Define prefix as repository name
+        id: define_ecosystem_package
+        shell: bash
+        run: |
+          ecosystem=$(echo ${{ github.event.pull_request.head.ref }} | sed 's/^dependabot\/\(.*\)\/\(.*\)/\1/')
+          package_version=$(echo ${{ github.event.pull_request.head.ref }} | sed 's/^dependabot\/\(.*\)\/\(.*\)/\2/')
+          echo $ecosystem
+          echo $package_version
+          echo "ecosystem=$(echo ${{ github.event.pull_request.head.ref }} | sed 's/^dependabot\/\(.*\)\/\(.*\)/\2/' )" >> $GITHUB_OUTPUT          
+          echo "package_version=$(echo ${{ github.event.pull_request.head.ref }} | sed 's/^dependabot\/\(.*\)\/\(.*\)/\2/' )" >> $GITHUB_OUTPUT
+      - name: Prepare PR URL
+        id: prepare_pr_url
+        shell: bash
+        run: |
+          echo "pr_url=$(echo https://github.com/${{ github.repository }}/pull/${{github.event.pull_request.number}})" >> $GITHUB_OUTPUT
+      - name: Prepare environment
+        shell: bash
+        run: |
+          repo=''
+          if [ "${{ github.repository }}" != "." ]; 
+          then 
+            repo="--repo ${{ github.repository }}";
+          fi
+          echo "repo=$repo" >> $GITHUB_ENV
+      - name: Create GH Issue
+        id: create-gh-issue
+        run: echo issue_num=$(gh issue create --title "${{github.event.pull_request.title}}" --body "Dependabot has opened PR ${{ steps.prepare_pr_url.outputs.pr_url }}<br>${{github.event.pull_request.body}}" $repo ) >> $GITHUB_OUTPUT
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+      - name: Update PR Body to add Closes statement
+        id: update_pr_body
+        shell: bash
+        run: gh pr edit ${{github.event.pull_request.number}} --body "Closes ${{ steps.create-gh-issue.outputs.issue_num }}<br>${{github.event.pull_request.body}}"
