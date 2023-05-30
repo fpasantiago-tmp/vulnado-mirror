@@ -17,7 +17,7 @@ jobs:
         uses: actions/dependency-review-action@v3
         continue-on-error: true
         with:
-          fail-on-severity: moderate
+          fail-on-severity: low
           fail-on-scopes: runtime
           license-check: false
       - name: Print dependency review output
