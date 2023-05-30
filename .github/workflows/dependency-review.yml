@@ -23,4 +23,4 @@ jobs:
         if: always()
         id: print_dependency_review_output
         shell: bash
-        run: echo "${{ toJson(steps.dependency_review_step.outputs) }}"
+        run: echo "${{ toJson(steps.dependency_review_step.outcome) }}"
