@@ -1,0 +1,12 @@
+name: "Bash version"
+on:
+  workflow_dispatch:
+jobs:
+  bash_version:
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Bash version"
+        id: bversion
+        shell: bash
+        run: |
+          bash --version
